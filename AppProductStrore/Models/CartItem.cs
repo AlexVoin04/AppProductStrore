@@ -11,5 +11,9 @@ namespace AppProductStrore.Models
         public Product Product { get; set; }
         public int Quantity { get; set; }
         public double TotalPrice => Product.Price * Quantity;
+
+        public string PriceFormatted => $"Цена: {Product.Price:C}";
+        public string QuantityFormatted => $"Количество: {Quantity}";
+        public string TotalFormatted => $"Сумма: {TotalPrice:C}";
     }
 }

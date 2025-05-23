@@ -120,12 +120,16 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Helpers\CommandAggregator.cs" />
+    <Compile Include="Helpers\ImageHelpers.cs" />
     <Compile Include="Helpers\RelayCommand.cs" />
+    <Compile Include="Helpers\SortOptionToStringConverter.cs" />
     <Compile Include="Interfaces\INavigationService.cs" />
     <Compile Include="Interfaces\IProductService.cs" />
     <Compile Include="Models\CartItem.cs" />
+    <Compile Include="Models\CartSortOption.cs" />
     <Compile Include="Services\CartService.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
+    <Compile Include="ViewModels\CartViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Services\LocalStorageService.cs" />
@@ -204,7 +208,6 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Assets\Data\cart.json" />
     <Content Include="Assets\Data\products.json" />
   </ItemGroup>
   <ItemGroup />

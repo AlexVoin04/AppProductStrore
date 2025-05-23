@@ -3,7 +3,7 @@
         "id": 1, 
         "name": "Product 1", 
         "price": 29.99, 
-        "image ": " product1.png" 
+        "image ": "product1.png" 
     }, 
     {
         "id": 2, 
@@ -15,7 +15,7 @@
         "id": 3, 
         "name": "Product 3", 
         "price": 49.99, 
-        "image": "/product3.png" 
+        "image": "product3.png" 
     }, 
     { 
         "id": 4, 
@@ -25,7 +25,7 @@
     }, 
     { 
         "id": 5, 
-        "name": "Product 4", 
+        "name": "Product 5", 
         "price": 60.99, 
         "image ": "product5.png" 
     }, 

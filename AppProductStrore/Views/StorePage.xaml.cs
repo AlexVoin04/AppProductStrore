@@ -1,4 +1,5 @@
-﻿using AppProductStrore.Models;
+﻿using AppProductStrore.Helpers;
+using AppProductStrore.Models;
 using AppProductStrore.Services;
 using AppProductStrore.ViewModels;
 using System;
@@ -36,10 +37,7 @@ namespace AppProductStrore.Views
 
         private void ProductImage_ImageFailed(object sender, ExceptionRoutedEventArgs e)
         {
-            if (sender is Image img)
-            {
-                img.Source = new BitmapImage(new Uri("ms-appdata:///local/Images/productDef.png"));
-            }
+            ImageHelpers.SetDefaultImageOnFail(sender, e);
         }
     }
 }
