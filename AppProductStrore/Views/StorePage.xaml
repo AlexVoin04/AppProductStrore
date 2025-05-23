@@ -15,9 +15,9 @@
     <Page.Resources>
         <DataTemplate x:Key="ProductTemplate">
             <Grid Width="220" Margin="8">
-                <Border Background="#22000000" CornerRadius="12" Margin="0,4,4,0"/>
+                <Border CornerRadius="12" Margin="0,4,4,0"/>
 
-                <Border Background="White" CornerRadius="12" BorderBrush="#DDD" BorderThickness="1">
+                <Border CornerRadius="12" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" BorderBrush="#DDD" BorderThickness="1">
                     <StackPanel Padding="12" Spacing="8">
 
                         <Grid Height="120" Width="196" HorizontalAlignment="Center">
@@ -31,7 +31,6 @@
 
                         <Button Content="Добавить в корзину"
                             Background="#FF4CAF50"
-                            Foreground="White"
                             Padding="6"
                             HorizontalAlignment="Stretch">
                             <interactivity:Interaction.Behaviors>

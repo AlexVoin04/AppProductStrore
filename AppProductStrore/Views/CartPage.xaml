@@ -29,10 +29,10 @@
         </Grid.RowDefinitions>
 
         <Border 
+            
             x:Name="HeaderShadowHost"
             Grid.Row="0"
             Padding="12"
-            Background="#F5F5F5"
             CornerRadius="8"
             BorderBrush="#DDDDDD"
             BorderThickness="1"
@@ -74,7 +74,7 @@
             <ListView ItemsSource="{Binding CartItems}" SelectionMode="None" HorizontalContentAlignment="Stretch">
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <Border Background="White"
+                        <Border Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
                         BorderBrush="#DDD"
                         BorderThickness="1"
                         CornerRadius="10"
@@ -99,7 +99,7 @@
                                     <TextBlock Text="{Binding Product.Name}"
                                        FontSize="16"
                                        FontWeight="Bold"
-                                       Foreground="#222"/>
+                                       />
                                     <TextBlock Text="{Binding PriceFormatted}"
                                        Foreground="#4CAF50"
                                        Margin="0,2,0,0"/>
