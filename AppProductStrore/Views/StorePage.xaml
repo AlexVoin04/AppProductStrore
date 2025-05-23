@@ -7,7 +7,9 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     x:Name="PageRoot"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+    xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
+    xmlns:core="using:Microsoft.Xaml.Interactions.Core">
 
     <Page.Resources>
         <DataTemplate x:Key="ProductTemplate">
@@ -16,7 +18,17 @@
                     <Image Source="{Binding ImagePath}" Height="100" Stretch="Uniform" ImageFailed="ProductImage_ImageFailed"/>
                     <TextBlock Text="{Binding Name}" FontWeight="Bold" FontSize="16" Margin="0,8,0,0"/>
                     <TextBlock Text="{Binding PriceFormatted}" Foreground="DarkGreen"/>
-                    <Button Content="Добавить в корзину" Margin="0,8,0,0" HorizontalAlignment="Stretch"/>
+                    <Button Content="Добавить в корзину"
+                            Margin="0,8,0,0"
+                            HorizontalAlignment="Stretch">
+                        <interactivity:Interaction.Behaviors>
+                            <core:EventTriggerBehavior EventName="Click">
+                                <core:InvokeCommandAction
+                                    Command="{Binding DataContext.AddToCartCommand, ElementName=PageRoot}"
+                                    CommandParameter="{Binding}" /> 
+                            </core:EventTriggerBehavior>
+                        </interactivity:Interaction.Behaviors>
+                    </Button>
                 </StackPanel>
             </Border>
         </DataTemplate>

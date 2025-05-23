@@ -124,6 +124,7 @@
     <Compile Include="Interfaces\INavigationService.cs" />
     <Compile Include="Interfaces\IProductService.cs" />
     <Compile Include="Models\CartItem.cs" />
+    <Compile Include="Services\CartService.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="Models\Product.cs" />
