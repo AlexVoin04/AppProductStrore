@@ -1,5 +1,6 @@
 ﻿using AppProductStrore.Helpers;
 using AppProductStrore.Interfaces;
+using AppProductStrore.ViewModels;
 using AppProductStrore.Views;
 using System;
 using System.Collections.Generic;
@@ -10,9 +11,24 @@ using System.Windows.Input;
 
 namespace AppProductStrore.Models
 {
-    public class MainViewModel
+    public class MainViewModel: BaseViewModel
     {
         private readonly INavigationService _navigationService;
+
+        private string _selectedTag;
+        public string SelectedTag
+        {
+            get => _selectedTag;
+            set
+            {
+                if (_selectedTag != value)
+                {
+                    _selectedTag = value;
+                    OnPropertyChanged(nameof(SelectedTag));
+                    ExecuteNavigation(_selectedTag);
+                }
+            }
+        }
 
         public ICommand NavigateCommand { get; }
         public MainViewModel(INavigationService navigationService)
@@ -20,6 +36,8 @@ namespace AppProductStrore.Models
             _navigationService = navigationService;
 
             NavigateCommand = new RelayCommand(ExecuteNavigation);
+
+            ExecuteNavigation("store");
         }
 
         public void ExecuteNavigation(object parameter)

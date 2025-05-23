@@ -15,10 +15,11 @@
         PaneTitle="Магазин"
         IsBackButtonVisible="Collapsed"
         IsBackEnabled="False"
-        IsSettingsVisible="False">
+        IsSettingsVisible="False"
+        SelectedItem="{Binding SelectedMenuItem, Mode=TwoWay}">
 
         <NavigationView.MenuItems>
-            <NavigationViewItem Content="Товары" Tag="store">
+            <NavigationViewItem x:Name="StoreNavItem" Content="Товары" Tag="store">
                 <NavigationViewItem.Icon>
                     <SymbolIcon Symbol="Shop"/>
                 </NavigationViewItem.Icon>
@@ -31,7 +32,7 @@
                 </interactivity:Interaction.Behaviors>
             </NavigationViewItem>
 
-            <NavigationViewItem Content="Корзина" Tag="cart">
+            <NavigationViewItem x:Name="CartNavItem" Content="Корзина" Tag="cart">
                 <NavigationViewItem.Icon>
                     <SymbolIcon Symbol="Library"/>
                 </NavigationViewItem.Icon>
