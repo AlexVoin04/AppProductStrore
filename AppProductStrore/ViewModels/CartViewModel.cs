@@ -1,0 +1,107 @@
+﻿using AppProductStrore.Helpers;
+using AppProductStrore.Models;
+using AppProductStrore.Services;
+using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Input;
+using Windows.Storage;
+
+namespace AppProductStrore.ViewModels
+{
+    public class CartViewModel: BaseViewModel
+    {
+        private readonly CartService _cartService = new CartService();
+        private ObservableCollection<CartItem> _cartItems = new ObservableCollection<CartItem>();
+        public ObservableCollection<CartItem> CartItems
+        {
+            get => _cartItems;
+            set { _cartItems = value; OnPropertyChanged(); }
+        }
+
+        public int TotalQuantity => CartItems.Sum(item => item.Quantity);
+        public double TotalPrice => CartItems.Sum(item => item.TotalPrice);
+        public string TotalQuantityText => $"Товаров: {TotalQuantity}";
+        public string TotalPriceText => $"Сумма: {TotalPrice:C}";
+
+        public ICommand RemoveFromCartCommand { get; }
+        public ICommand SortCommand { get; }
+
+        private CartSortOption _sortOption;
+        public CartSortOption SortOption
+        {
+            get => _sortOption;
+            set
+            {
+                _sortOption = value;
+                OnPropertyChanged();
+                SortCartItems();
+                SaveSortPreference();
+            }
+        }
+
+        public CartViewModel()
+        {
+            RemoveFromCartCommand = new RelayCommand(async (param) => await RemoveItem(param as CartItem));
+            SortCommand = new RelayCommand((param) => SortOption = (CartSortOption)param);
+            LoadSortPreference();
+            Task.Run(async () => await LoadCart()).Wait();
+        }
+
+        private async Task LoadCart()
+        {
+            CartItems = await _cartService.LoadCartAsync();
+            SortCartItems();
+            OnPropertyChanged(nameof(TotalQuantity));
+            OnPropertyChanged(nameof(TotalPrice));
+            OnPropertyChanged(nameof(TotalQuantityText));
+            OnPropertyChanged(nameof(TotalPriceText));
+        }
+
+        private async Task RemoveItem(CartItem item)
+        {
+            CartItems.Remove(item);
+            await _cartService.SaveCartAsync(CartItems);
+            OnPropertyChanged(nameof(TotalQuantity));
+            OnPropertyChanged(nameof(TotalPrice));
+            OnPropertyChanged(nameof(TotalQuantityText));
+            OnPropertyChanged(nameof(TotalPriceText));
+        }
+
+        private void SortCartItems()
+        {
+            switch (SortOption)
+            {
+                case CartSortOption.ByName:
+                    CartItems = new ObservableCollection<CartItem>(CartItems.OrderBy(i => i.Product.Name));
+                    break;
+                case CartSortOption.ByPrice:
+                    CartItems = new ObservableCollection<CartItem>(CartItems.OrderBy(i => i.Product.Price));
+                    break;
+            }
+
+            OnPropertyChanged(nameof(CartItems));
+        }
+
+        private void SaveSortPreference()
+        {
+            ApplicationData.Current.LocalSettings.Values["CartSortOption"] = SortOption.ToString();
+        }
+
+        private void LoadSortPreference()
+        {
+            var setting = ApplicationData.Current.LocalSettings.Values["CartSortOption"] as string;
+            if (Enum.TryParse(setting, out CartSortOption option))
+            {
+                _sortOption = option;
+            }
+            else
+            {
+                _sortOption = CartSortOption.ByName;
+            }
+        }
+    }
+}
