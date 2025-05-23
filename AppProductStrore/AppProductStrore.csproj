@@ -119,6 +119,10 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Interfaces\IProductService.cs" />
+    <Compile Include="Models\CartItem.cs" />
+    <Compile Include="Models\Product.cs" />
+    <Compile Include="Services\ProductService.cs" />
     <Compile Include="Views\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -169,13 +173,16 @@
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
       <Version>6.2.14</Version>
     </PackageReference>
+    <PackageReference Include="Newtonsoft.Json">
+      <Version>13.0.3</Version>
+    </PackageReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Data\cart.json" />
     <None Include="Assets\Data\products.json" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Models\" />
+    <Folder Include="Helpers\" />
     <Folder Include="ViewModels\" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
