@@ -11,11 +11,12 @@
 
     <Page.Resources>
         <DataTemplate x:Key="ProductTemplate">
-            <Border Margin="8" Padding="10" Background="White" CornerRadius="10" BorderBrush="LightGray" BorderThickness="1">
+            <Border Width="200" Margin="8" Padding="10" Background="White" CornerRadius="10" BorderBrush="LightGray" BorderThickness="1">
                 <StackPanel>
                     <Image Source="{Binding ImagePath}" Height="100" Stretch="Uniform" ImageFailed="ProductImage_ImageFailed"/>
                     <TextBlock Text="{Binding Name}" FontWeight="Bold" FontSize="16" Margin="0,8,0,0"/>
                     <TextBlock Text="{Binding PriceFormatted}" Foreground="DarkGreen"/>
+                    <Button Content="Добавить в корзину" Margin="0,8,0,0" HorizontalAlignment="Stretch"/>
                 </StackPanel>
             </Border>
         </DataTemplate>
@@ -28,11 +29,12 @@
         IsItemClickEnabled="False"
         Padding="12"
         Margin="12"
-        ItemTemplate="{StaticResource ProductTemplate}">
+        ItemTemplate="{StaticResource ProductTemplate}"
+        IsHoldingEnabled="False">
 
             <GridView.ItemsPanel>
                 <ItemsPanelTemplate>
-                    <ItemsWrapGrid Orientation="Vertical" />
+                    <ItemsWrapGrid Orientation="Horizontal" />
                 </ItemsPanelTemplate>
             </GridView.ItemsPanel>
         </GridView>
