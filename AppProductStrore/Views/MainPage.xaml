@@ -6,9 +6,46 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
+    xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
+    xmlns:core="using:Microsoft.Xaml.Interactions.Core"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid>
+    <NavigationView
+        x:Name="MainNavView"
+        PaneTitle="Магазин"
+        IsBackButtonVisible="Collapsed"
+        IsBackEnabled="False">
 
-    </Grid>
+        <NavigationView.MenuItems>
+            <NavigationViewItem Content="Товары" Tag="store">
+                <NavigationViewItem.Icon>
+                    <SymbolIcon Symbol="Shop"/>
+                </NavigationViewItem.Icon>
+                <interactivity:Interaction.Behaviors>
+                    <core:EventTriggerBehavior EventName="Tapped">
+                        <core:InvokeCommandAction 
+                            Command="{Binding NavigateCommand}"
+                            CommandParameter="{Binding Tag, RelativeSource={RelativeSource Mode=TemplatedParent}}"/>
+                    </core:EventTriggerBehavior>
+                </interactivity:Interaction.Behaviors>
+            </NavigationViewItem>
+
+            <NavigationViewItem Content="Корзина" Tag="cart">
+                <NavigationViewItem.Icon>
+                    <SymbolIcon Symbol="Library"/>
+                </NavigationViewItem.Icon>
+                <interactivity:Interaction.Behaviors>
+                    <core:EventTriggerBehavior EventName="Tapped">
+                        <core:InvokeCommandAction 
+                            Command="{Binding NavigateCommand}"
+                            CommandParameter="{Binding Tag, RelativeSource={RelativeSource Mode=TemplatedParent}}"/>
+                    </core:EventTriggerBehavior>
+                </interactivity:Interaction.Behaviors>
+            </NavigationViewItem>
+        </NavigationView.MenuItems>
+
+        <NavigationView.Content>
+            <Frame x:Name="PageFrame"/>
+        </NavigationView.Content>
+    </NavigationView>
 </Page>
