@@ -71,33 +71,58 @@
         </Border>
 
         <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
-            <ListView ItemsSource="{Binding CartItems}" SelectionMode="None">
+            <ListView ItemsSource="{Binding CartItems}" SelectionMode="None" HorizontalContentAlignment="Stretch">
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <Border BorderBrush="LightGray" BorderThickness="1" CornerRadius="8" Margin="0,4" Padding="10" Background="White">
+                        <Border Background="White"
+                        BorderBrush="#DDD"
+                        BorderThickness="1"
+                        CornerRadius="10"
+                        Margin="0,6"
+                        Padding="12"
+                        HorizontalAlignment="Stretch">
                             <Grid>
                                 <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
                                     <ColumnDefinition Width="*"/>
                                     <ColumnDefinition Width="Auto"/>
                                 </Grid.ColumnDefinitions>
 
-                                <StackPanel Orientation="Horizontal" Grid.Column="0" Spacing="12">
-                                    <Image Source="{Binding Product.ImagePath}" Width="60" Height="60" ImageFailed="Image_ImageFailed"/>
-                                    <StackPanel>
-                                        <TextBlock Text="{Binding Product.Name}" FontWeight="Bold" FontSize="16"/>
-                                        <TextBlock Text="{Binding PriceFormatted}"/>
-                                        <TextBlock Text="{Binding QuantityFormatted}"/>
-                                        <TextBlock Text="{Binding TotalFormatted}"/>
-                                    </StackPanel>
+                                <Image Source="{Binding Product.ImagePath}"
+                               Width="120"
+                               Height="80"
+                               Stretch="Uniform"
+                               Margin="0,0,12,0"
+                               ImageFailed="Image_ImageFailed"/>
+
+                                <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                                    <TextBlock Text="{Binding Product.Name}"
+                                       FontSize="16"
+                                       FontWeight="Bold"
+                                       Foreground="#222"/>
+                                    <TextBlock Text="{Binding PriceFormatted}"
+                                       Foreground="#4CAF50"
+                                       Margin="0,2,0,0"/>
+                                    <TextBlock Text="{Binding QuantityFormatted}" Foreground="#777"/>
+                                    <TextBlock Text="{Binding TotalFormatted}" FontWeight="SemiBold" Foreground="#333"/>
                                 </StackPanel>
 
-                                <Button Content="Удалить"
-                                        Grid.Column="1"
-                                        VerticalAlignment="Center">
+                                <Button Grid.Column="2"
+                                VerticalAlignment="Center"
+                                Content="✖"
+                                Width="36"
+                                Height="36"
+                                Background="#FF5252"
+                                Foreground="White"
+                                FontWeight="Bold"
+                                CornerRadius="18"
+                                Margin="12,0,0,0"
+                                BorderThickness="0"
+                                ToolTipService.ToolTip="Удалить товар">
                                     <interactivity:Interaction.Behaviors>
                                         <core:EventTriggerBehavior EventName="Click">
                                             <core:InvokeCommandAction Command="{Binding DataContext.RemoveFromCartCommand, ElementName=PageRoot}"
-                                                                      CommandParameter="{Binding}"/>
+                                                              CommandParameter="{Binding}"/>
                                         </core:EventTriggerBehavior>
                                     </interactivity:Interaction.Behaviors>
                                 </Button>
