@@ -122,6 +122,7 @@
     <Compile Include="Interfaces\IProductService.cs" />
     <Compile Include="Models\CartItem.cs" />
     <Compile Include="Models\Product.cs" />
+    <Compile Include="Services\LocalStorageService.cs" />
     <Compile Include="Services\ProductService.cs" />
     <Compile Include="Views\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
@@ -178,8 +179,8 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Assets\Data\cart.json" />
-    <None Include="Assets\Data\products.json" />
+    <Content Include="Assets\Data\cart.json" />
+    <Content Include="Assets\Data\products.json" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Helpers\" />
