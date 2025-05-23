@@ -119,7 +119,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="MainPage.xaml.cs">
+    <Compile Include="Views\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -130,6 +130,22 @@
     </AppxManifest>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\Images\product1.png" />
+    <Content Include="Assets\Images\product10.png" />
+    <Content Include="Assets\Images\product11.png" />
+    <Content Include="Assets\Images\product12.png" />
+    <Content Include="Assets\Images\product13.png" />
+    <Content Include="Assets\Images\product14.png" />
+    <Content Include="Assets\Images\product15.png" />
+    <Content Include="Assets\Images\product2.png" />
+    <Content Include="Assets\Images\product3.png" />
+    <Content Include="Assets\Images\product4.png" />
+    <Content Include="Assets\Images\product5.png" />
+    <Content Include="Assets\Images\product6.png" />
+    <Content Include="Assets\Images\product7.png" />
+    <Content Include="Assets\Images\product8.png" />
+    <Content Include="Assets\Images\product9.png" />
+    <Content Include="Assets\Images\productDef.png" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />
@@ -144,7 +160,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="MainPage.xaml">
+    <Page Include="Views\MainPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -153,6 +169,14 @@
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
       <Version>6.2.14</Version>
     </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Data\cart.json" />
+    <None Include="Assets\Data\products.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Models\" />
+    <Folder Include="ViewModels\" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
