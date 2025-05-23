@@ -6,9 +6,50 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    x:Name="PageRoot"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+    xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
+    xmlns:core="using:Microsoft.Xaml.Interactions.Core">
+
+    <Page.Resources>
+        <DataTemplate x:Key="ProductTemplate">
+            <Border Width="200" Margin="8" Padding="10" Background="White" CornerRadius="10" BorderBrush="LightGray" BorderThickness="1">
+                <StackPanel>
+                    <Image Source="{Binding ImagePath}" Height="100" Stretch="Uniform" ImageFailed="ProductImage_ImageFailed"/>
+                    <TextBlock Text="{Binding Name}" FontWeight="Bold" FontSize="16" Margin="0,8,0,0"/>
+                    <TextBlock Text="{Binding PriceFormatted}" Foreground="DarkGreen"/>
+                    <Button Content="Добавить в корзину"
+                            Margin="0,8,0,0"
+                            HorizontalAlignment="Stretch">
+                        <interactivity:Interaction.Behaviors>
+                            <core:EventTriggerBehavior EventName="Click">
+                                <core:InvokeCommandAction
+                                    Command="{Binding DataContext.AddToCartCommand, ElementName=PageRoot}"
+                                    CommandParameter="{Binding}" /> 
+                            </core:EventTriggerBehavior>
+                        </interactivity:Interaction.Behaviors>
+                    </Button>
+                </StackPanel>
+            </Border>
+        </DataTemplate>
+    </Page.Resources>
 
     <Grid>
+        <GridView
+        ItemsSource="{Binding Products}"
+        SelectionMode="None"
+        IsItemClickEnabled="False"
+        Padding="12"
+        Margin="12"
+        ItemTemplate="{StaticResource ProductTemplate}"
+        IsHoldingEnabled="False">
+
+            <GridView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <ItemsWrapGrid Orientation="Horizontal" />
+                </ItemsPanelTemplate>
+            </GridView.ItemsPanel>
+        </GridView>
 
     </Grid>
 </Page>
