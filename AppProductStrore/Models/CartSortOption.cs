@@ -1,15 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace AppProductStrore.Models
+﻿namespace AppProductStrore.Models
 {
     public enum CartSortOption
     {
-        Default,
-        ByName,
-        ByPrice
+        Default = 0,
+        ByName = 1,
+        ByPrice = 2
     }
 }

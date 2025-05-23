@@ -2,11 +2,6 @@
 using AppProductStrore.Interfaces;
 using AppProductStrore.ViewModels;
 using AppProductStrore.Views;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace AppProductStrore.Models
