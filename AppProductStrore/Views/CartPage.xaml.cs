@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AppProductStrore.Helpers;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -25,6 +26,11 @@ namespace AppProductStrore.Views
         public CartPage()
         {
             this.InitializeComponent();
+        }
+
+        private void Image_ImageFailed(object sender, ExceptionRoutedEventArgs e)
+        {
+            ImageHelpers.SetDefaultImageOnFail(sender, e);
         }
     }
 }

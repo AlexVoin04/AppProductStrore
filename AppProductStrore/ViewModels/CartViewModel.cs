@@ -31,6 +31,13 @@ namespace AppProductStrore.ViewModels
         public ICommand SortCommand { get; }
 
         private CartSortOption _sortOption;
+
+        public ObservableCollection<CartSortOption> SortOptions { get; } =
+            new ObservableCollection<CartSortOption>
+            {
+                CartSortOption.ByName,
+                CartSortOption.ByPrice
+            };
         public CartSortOption SortOption
         {
             get => _sortOption;
