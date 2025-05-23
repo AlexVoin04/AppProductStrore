@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Windows.Storage;
 
@@ -44,12 +42,6 @@ namespace AppProductStrore.Services
             }
         }
 
-        /// <summary>
-        /// Checks whether the specified file has already been initialized in the given folder.
-        /// </summary>
-        /// <param name="folder">The folder in which to search for the file.</param>
-        /// <param name="fileName">The name of the file to check for existence.</param>
-        /// <returns>Returns <c>true</c> if the file is found (already initialized); otherwise, <c>false</c>.</returns>
         private static async Task<bool> FileExistsAsync(StorageFolder folder, string fileName)
         {
             try

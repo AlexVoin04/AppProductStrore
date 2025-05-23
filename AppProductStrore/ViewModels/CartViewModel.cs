@@ -5,7 +5,6 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Windows.Storage;
@@ -20,11 +19,15 @@ namespace AppProductStrore.ViewModels
         public ObservableCollection<CartItem> CartItems
         {
             get => _cartItems;
-            set { _cartItems = value; OnPropertyChanged(); }
+
+            set 
+            { 
+                _cartItems = value; OnPropertyChanged(); 
+            }
         }
 
         public int TotalQuantity => CartItems.Sum(item => item.Quantity);
-        public double TotalPrice => CartItems.Sum(item => item.TotalPrice);
+        public decimal TotalPrice => CartItems.Sum(item => item.TotalPrice);
         public string TotalQuantityText => $"Товаров: {TotalQuantity}";
         public string TotalPriceText => $"Сумма: {TotalPrice:C}";
 
