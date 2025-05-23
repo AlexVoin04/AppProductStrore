@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AppProductStrore.Services;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -37,12 +38,14 @@ namespace AppProductStrore
         /// например, если приложение запускается для открытия конкретного файла.
         /// </summary>
         /// <param name="e">Сведения о запросе и обработке запуска.</param>
-        protected override void OnLaunched(LaunchActivatedEventArgs e)
+        protected override async void OnLaunched(LaunchActivatedEventArgs e)
         {
             Frame rootFrame = Window.Current.Content as Frame;
 
             // Не повторяйте инициализацию приложения, если в окне уже имеется содержимое,
             // только обеспечьте активность окна
+            await LocalStorageService.InitializeLocalStorageAsync();
+
             if (rootFrame == null)
             {
                 // Создание фрейма, который станет контекстом навигации, и переход к первой странице
