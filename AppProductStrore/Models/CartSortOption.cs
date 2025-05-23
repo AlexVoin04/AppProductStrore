@@ -8,6 +8,7 @@ namespace AppProductStrore.Models
 {
     public enum CartSortOption
     {
+        Default,
         ByName,
         ByPrice
     }

@@ -16,6 +16,7 @@ namespace AppProductStrore.ViewModels
     {
         private readonly CartService _cartService = new CartService();
         private ObservableCollection<CartItem> _cartItems = new ObservableCollection<CartItem>();
+        private List<CartItem> _originalCart = new List<CartItem>();
         public ObservableCollection<CartItem> CartItems
         {
             get => _cartItems;
@@ -35,6 +36,7 @@ namespace AppProductStrore.ViewModels
         public ObservableCollection<CartSortOption> SortOptions { get; } =
             new ObservableCollection<CartSortOption>
             {
+                CartSortOption.Default,
                 CartSortOption.ByName,
                 CartSortOption.ByPrice
             };
@@ -60,7 +62,9 @@ namespace AppProductStrore.ViewModels
 
         private async Task LoadCart()
         {
-            CartItems = await _cartService.LoadCartAsync();
+            var loadedItems = await _cartService.LoadCartAsync();
+            _originalCart = loadedItems.ToList();
+            CartItems = new ObservableCollection<CartItem>(_originalCart);
             SortCartItems();
             OnPropertyChanged(nameof(TotalQuantity));
             OnPropertyChanged(nameof(TotalPrice));
@@ -71,6 +75,8 @@ namespace AppProductStrore.ViewModels
         private async Task RemoveItem(CartItem item)
         {
             CartItems.Remove(item);
+            _originalCart.Remove(item); 
+
             await _cartService.SaveCartAsync(CartItems);
             OnPropertyChanged(nameof(TotalQuantity));
             OnPropertyChanged(nameof(TotalPrice));
@@ -80,16 +86,22 @@ namespace AppProductStrore.ViewModels
 
         private void SortCartItems()
         {
+            IEnumerable<CartItem> sortedItems = _originalCart;
             switch (SortOption)
             {
                 case CartSortOption.ByName:
-                    CartItems = new ObservableCollection<CartItem>(CartItems.OrderBy(i => i.Product.Name));
+                    sortedItems = _originalCart.OrderBy(i => i.Product.Name);
                     break;
                 case CartSortOption.ByPrice:
-                    CartItems = new ObservableCollection<CartItem>(CartItems.OrderBy(i => i.Product.Price));
+                    sortedItems = _originalCart.OrderBy(i => i.Product.Price);
+                    break;
+                case CartSortOption.Default:
+                default:
+                    // Используем _originalCart как есть
                     break;
             }
 
+            CartItems = new ObservableCollection<CartItem>(sortedItems);
             OnPropertyChanged(nameof(CartItems));
         }
 

@@ -30,6 +30,9 @@ namespace AppProductStrore
             this.InitializeComponent();
             INavigationService navigationService = new NavigationService(PageFrame);
             DataContext = new MainViewModel(navigationService);
+
+            var view = Windows.UI.ViewManagement.ApplicationView.GetForCurrentView();
+            view.SetPreferredMinSize(new Size(1000, 1200));
         }
     }
 }

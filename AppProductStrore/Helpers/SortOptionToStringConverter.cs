@@ -16,6 +16,8 @@ namespace AppProductStrore.Helpers
             {
                 switch (option)
                 {
+                    case CartSortOption.Default:
+                        return "По умолчанию";
                     case CartSortOption.ByName:
                         return "По названию";
                     case CartSortOption.ByPrice:

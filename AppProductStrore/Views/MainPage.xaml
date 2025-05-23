@@ -14,7 +14,8 @@
         x:Name="MainNavView"
         PaneTitle="Магазин"
         IsBackButtonVisible="Collapsed"
-        IsBackEnabled="False">
+        IsBackEnabled="False"
+        IsSettingsVisible="False">
 
         <NavigationView.MenuItems>
             <NavigationViewItem Content="Товары" Tag="store">

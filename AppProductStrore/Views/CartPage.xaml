@@ -20,14 +20,20 @@
         <help:SortOptionToStringConverter x:Key="SortOptionToStringConverter"/>
     </Page.Resources>
 
-    <StackPanel Padding="16" Spacing="12">
-        <!-- Header -->
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="0,0,0,10">
+    <Grid Padding="16">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <!-- Header -->
+            <RowDefinition Height="*"/>
+            <!-- Scrollable List -->
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="0,0,0,10">
             <TextBlock Text="{Binding TotalQuantityText}" FontSize="18" Margin="0,0,16,0"/>
             <TextBlock Text="{Binding TotalPriceText}" FontSize="18"/>
-            <ComboBox Width="160" Margin="32,0,0,0" SelectedIndex="0"
+            <ComboBox Width="160" Margin="32,0,0,0"
                       ItemsSource="{Binding SortOptions}"
-                    SelectedItem="{Binding SortOption, Mode=TwoWay}">
+                      SelectedItem="{Binding SortOption, Mode=TwoWay}">
                 <ComboBox.ItemTemplate>
                     <DataTemplate>
                         <TextBlock Text="{Binding Converter={StaticResource SortOptionToStringConverter}}"/>
@@ -36,43 +42,42 @@
             </ComboBox>
         </StackPanel>
 
-        <!-- List of products -->
-        <ListView ItemsSource="{Binding CartItems}" SelectionMode="None">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <Border BorderBrush="LightGray" BorderThickness="1" CornerRadius="8" Margin="0,4" Padding="10" Background="White">
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="Auto"/>
-                            </Grid.ColumnDefinitions>
+        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+            <ListView ItemsSource="{Binding CartItems}" SelectionMode="None">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Border BorderBrush="LightGray" BorderThickness="1" CornerRadius="8" Margin="0,4" Padding="10" Background="White">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
 
-                            <!-- Left side: product info -->
-                            <StackPanel Orientation="Horizontal" Grid.Column="0" Spacing="12">
-                                <Image Source="{Binding Product.ImagePath}" Width="60" Height="60" ImageFailed="Image_ImageFailed"/>
-                                <StackPanel>
-                                    <TextBlock Text="{Binding Product.Name}" FontWeight="Bold" FontSize="16"/>
-                                    <TextBlock Text="{Binding PriceFormatted}"/>
-                                    <TextBlock Text="{Binding QuantityFormatted}"/>
-                                    <TextBlock Text="{Binding TotalFormatted}"/>
+                                <StackPanel Orientation="Horizontal" Grid.Column="0" Spacing="12">
+                                    <Image Source="{Binding Product.ImagePath}" Width="60" Height="60" ImageFailed="Image_ImageFailed"/>
+                                    <StackPanel>
+                                        <TextBlock Text="{Binding Product.Name}" FontWeight="Bold" FontSize="16"/>
+                                        <TextBlock Text="{Binding PriceFormatted}"/>
+                                        <TextBlock Text="{Binding QuantityFormatted}"/>
+                                        <TextBlock Text="{Binding TotalFormatted}"/>
+                                    </StackPanel>
                                 </StackPanel>
-                            </StackPanel>
 
-                            <!-- Right side: delete button -->
-                            <Button Content="Удалить"
-                                    Grid.Column="1"
-                                    VerticalAlignment="Center">
-                                <interactivity:Interaction.Behaviors>
-                                    <core:EventTriggerBehavior EventName="Click">
-                                        <core:InvokeCommandAction Command="{Binding DataContext.RemoveFromCartCommand, ElementName=PageRoot}"
-                                                                  CommandParameter="{Binding}"/>
-                                    </core:EventTriggerBehavior>
-                                </interactivity:Interaction.Behaviors>
-                            </Button>
-                        </Grid>
-                    </Border>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
-    </StackPanel>
+                                <Button Content="Удалить"
+                                        Grid.Column="1"
+                                        VerticalAlignment="Center">
+                                    <interactivity:Interaction.Behaviors>
+                                        <core:EventTriggerBehavior EventName="Click">
+                                            <core:InvokeCommandAction Command="{Binding DataContext.RemoveFromCartCommand, ElementName=PageRoot}"
+                                                                      CommandParameter="{Binding}"/>
+                                        </core:EventTriggerBehavior>
+                                    </interactivity:Interaction.Behaviors>
+                                </Button>
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </ScrollViewer>
+    </Grid>
 </Page>

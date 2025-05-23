@@ -208,7 +208,6 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Assets\Data\cart.json" />
     <Content Include="Assets\Data\products.json" />
   </ItemGroup>
   <ItemGroup />
