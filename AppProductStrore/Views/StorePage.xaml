@@ -9,28 +9,42 @@
     x:Name="PageRoot"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
     xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
-    xmlns:core="using:Microsoft.Xaml.Interactions.Core">
+    xmlns:core="using:Microsoft.Xaml.Interactions.Core"
+    >
 
     <Page.Resources>
         <DataTemplate x:Key="ProductTemplate">
-            <Border Width="200" Margin="8" Padding="10" Background="White" CornerRadius="10" BorderBrush="LightGray" BorderThickness="1">
-                <StackPanel>
-                    <Image Source="{Binding ImagePath}" Height="100" Stretch="Uniform" ImageFailed="ProductImage_ImageFailed"/>
-                    <TextBlock Text="{Binding Name}" FontWeight="Bold" FontSize="16" Margin="0,8,0,0"/>
-                    <TextBlock Text="{Binding PriceFormatted}" Foreground="DarkGreen"/>
-                    <Button Content="Добавить в корзину"
-                            Margin="0,8,0,0"
+            <Grid Width="220" Margin="8">
+                <Border Background="#22000000" CornerRadius="12" Margin="0,4,4,0"/>
+
+                <Border Background="White" CornerRadius="12" BorderBrush="#DDD" BorderThickness="1">
+                    <StackPanel Padding="12" Spacing="8">
+
+                        <Grid Height="120" Width="196" HorizontalAlignment="Center">
+                            <Image Source="{Binding ImagePath}" Stretch="Uniform"
+                               ImageFailed="ProductImage_ImageFailed" Width="196" Height="120"/>
+                        </Grid>
+
+                        <TextBlock Text="{Binding Name}" FontWeight="SemiBold" FontSize="16" TextWrapping="WrapWholeWords"/>
+
+                        <TextBlock Text="{Binding PriceFormatted}" Foreground="DarkGreen" FontSize="14"/>
+
+                        <Button Content="Добавить в корзину"
+                            Background="#FF4CAF50"
+                            Foreground="White"
+                            Padding="6"
                             HorizontalAlignment="Stretch">
-                        <interactivity:Interaction.Behaviors>
-                            <core:EventTriggerBehavior EventName="Click">
-                                <core:InvokeCommandAction
+                            <interactivity:Interaction.Behaviors>
+                                <core:EventTriggerBehavior EventName="Click">
+                                    <core:InvokeCommandAction
                                     Command="{Binding DataContext.AddToCartCommand, ElementName=PageRoot}"
-                                    CommandParameter="{Binding}" /> 
-                            </core:EventTriggerBehavior>
-                        </interactivity:Interaction.Behaviors>
-                    </Button>
-                </StackPanel>
-            </Border>
+                                    CommandParameter="{Binding}" />
+                                </core:EventTriggerBehavior>
+                            </interactivity:Interaction.Behaviors>
+                        </Button>
+                    </StackPanel>
+                </Border>
+            </Grid>
         </DataTemplate>
     </Page.Resources>
 

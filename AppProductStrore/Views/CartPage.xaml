@@ -28,19 +28,47 @@
             <!-- Scrollable List -->
         </Grid.RowDefinitions>
 
-        <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="0,0,0,10">
-            <TextBlock Text="{Binding TotalQuantityText}" FontSize="18" Margin="0,0,16,0"/>
-            <TextBlock Text="{Binding TotalPriceText}" FontSize="18"/>
-            <ComboBox Width="160" Margin="32,0,0,0"
-                      ItemsSource="{Binding SortOptions}"
-                      SelectedItem="{Binding SortOption, Mode=TwoWay}">
-                <ComboBox.ItemTemplate>
-                    <DataTemplate>
-                        <TextBlock Text="{Binding Converter={StaticResource SortOptionToStringConverter}}"/>
-                    </DataTemplate>
-                </ComboBox.ItemTemplate>
-            </ComboBox>
-        </StackPanel>
+        <Border 
+            x:Name="HeaderShadowHost"
+            Grid.Row="0"
+            Padding="12"
+            Background="#F5F5F5"
+            CornerRadius="8"
+            BorderBrush="#DDDDDD"
+            BorderThickness="1"
+            Margin="0,0,0,10">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Grid.Column="0" Margin="0,0,20,0">
+                    <FontIcon Glyph="&#xE14C;" FontSize="18" Margin="0,0,6,0"/>
+                    <TextBlock Text="{Binding TotalQuantityText}" FontSize="18" FontWeight="SemiBold"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Grid.Column="1" Margin="0,0,20,0">
+                    <TextBlock Text="{Binding TotalPriceText}" FontSize="18" FontWeight="SemiBold"/>
+                </StackPanel>
+
+                <Grid Grid.Column="2"/>
+
+                <ComboBox Width="180"
+                  Grid.Column="3"
+                  ItemsSource="{Binding SortOptions}"
+                  SelectedItem="{Binding SortOption, Mode=TwoWay}"
+                  HorizontalAlignment="Right">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Converter={StaticResource SortOptionToStringConverter}}"/>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+            </Grid>
+        </Border>
 
         <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
             <ListView ItemsSource="{Binding CartItems}" SelectionMode="None">
