@@ -22,7 +22,8 @@ namespace AppProductStrore.ViewModels
 
             set 
             { 
-                _cartItems = value; OnPropertyChanged(); 
+                _cartItems = value; 
+                OnPropertyChanged(); 
             }
         }
 
