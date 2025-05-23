@@ -6,9 +6,36 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
+    x:Name="PageRoot"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
+    <Page.Resources>
+        <DataTemplate x:Key="ProductTemplate">
+            <Border Margin="8" Padding="10" Background="White" CornerRadius="10" BorderBrush="LightGray" BorderThickness="1">
+                <StackPanel>
+                    <Image Source="{Binding ImagePath}" Height="100" Stretch="Uniform" ImageFailed="ProductImage_ImageFailed"/>
+                    <TextBlock Text="{Binding Name}" FontWeight="Bold" FontSize="16" Margin="0,8,0,0"/>
+                    <TextBlock Text="{Binding PriceFormatted}" Foreground="DarkGreen"/>
+                </StackPanel>
+            </Border>
+        </DataTemplate>
+    </Page.Resources>
+
     <Grid>
+        <GridView
+        ItemsSource="{Binding Products}"
+        SelectionMode="None"
+        IsItemClickEnabled="False"
+        Padding="12"
+        Margin="12"
+        ItemTemplate="{StaticResource ProductTemplate}">
+
+            <GridView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <ItemsWrapGrid Orientation="Vertical" />
+                </ItemsPanelTemplate>
+            </GridView.ItemsPanel>
+        </GridView>
 
     </Grid>
 </Page>

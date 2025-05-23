@@ -25,7 +25,7 @@
                     <core:EventTriggerBehavior EventName="Tapped">
                         <core:InvokeCommandAction 
                             Command="{Binding NavigateCommand}"
-                            CommandParameter="{Binding Tag, RelativeSource={RelativeSource Mode=TemplatedParent}}"/>
+                            CommandParameter="store"/>
                     </core:EventTriggerBehavior>
                 </interactivity:Interaction.Behaviors>
             </NavigationViewItem>
@@ -38,7 +38,7 @@
                     <core:EventTriggerBehavior EventName="Tapped">
                         <core:InvokeCommandAction 
                             Command="{Binding NavigateCommand}"
-                            CommandParameter="{Binding Tag, RelativeSource={RelativeSource Mode=TemplatedParent}}"/>
+                            CommandParameter="cart"/>
                     </core:EventTriggerBehavior>
                 </interactivity:Interaction.Behaviors>
             </NavigationViewItem>

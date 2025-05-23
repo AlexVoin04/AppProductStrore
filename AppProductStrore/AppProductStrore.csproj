@@ -124,11 +124,13 @@
     <Compile Include="Interfaces\INavigationService.cs" />
     <Compile Include="Interfaces\IProductService.cs" />
     <Compile Include="Models\CartItem.cs" />
+    <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Services\LocalStorageService.cs" />
     <Compile Include="Services\NavigationService.cs" />
     <Compile Include="Services\ProductService.cs" />
+    <Compile Include="ViewModels\StoreViewModel.cs" />
     <Compile Include="Views\CartPage.xaml.cs">
       <DependentUpon>CartPage.xaml</DependentUpon>
     </Compile>
