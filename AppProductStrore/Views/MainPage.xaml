@@ -15,8 +15,7 @@
         PaneTitle="Магазин"
         IsBackButtonVisible="Collapsed"
         IsBackEnabled="False"
-        IsSettingsVisible="False"
-        SelectedItem="{Binding SelectedMenuItem, Mode=TwoWay}">
+        IsSettingsVisible="False">
 
         <NavigationView.MenuItems>
             <NavigationViewItem x:Name="StoreNavItem" Content="Товары" Tag="store">
