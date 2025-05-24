@@ -1,5 +1,4 @@
 ﻿using AppProductStrore.ViewModels;
-using System.ComponentModel;
 
 namespace AppProductStrore.Models
 {
